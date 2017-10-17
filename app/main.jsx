@@ -5,10 +5,13 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 import Root from './components/Root'
+import Routes from './Routes'
+//import Navbar from './components/Navbar'
+// import StudentList from './components/StudentList'
 
 render (
   <Provider store={store}>
-    <Root/>
+    <Routes />
   </Provider>,
   document.getElementById('main')
 )
