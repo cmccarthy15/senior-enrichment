@@ -46,8 +46,8 @@ router.put('/', (req, res, next) => {
   });
 });
 
-router.delete('/', (req, res, next) => {
-  const campusId = req.body.id || req.body.campus.id;
+router.delete('/:id', (req, res, next) => {
+  const campusId = req.params.id;
   Campus.findById(campusId)
   .then(campus => {
     if (!campus) {

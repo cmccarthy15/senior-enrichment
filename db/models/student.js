@@ -15,6 +15,9 @@ const Student = db.define('student', {
     } // is that a thing?
   }
 }, {
+  defaultScope: {
+    include: [{model: db.model('campus')}]
+  },
   scopes: {
     populated: () => ({
       include: [{
@@ -23,7 +26,6 @@ const Student = db.define('student', {
     })
   }
 }
-// do I need any hooks or validations?
 );
 
 module.exports = Student;

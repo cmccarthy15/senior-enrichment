@@ -20,7 +20,9 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/add', (req, res, next) => {
+  console.log('in backend route with req.body: ', req.body);
   Student.create(req.body)
+  .then(student => student.reload(Student.options.scopes.populated()))
   .then(student => {
     if (!student){
       res.sendStatus(404);
@@ -44,8 +46,8 @@ router.put('/', (req, res, next) => {
   });
 });
 
-router.delete('/', (req, res, next) => {
-  const studentId = req.body.id || req.body.student.id;
+router.delete('/:id', (req, res, next) => {
+  const studentId = req.params.id;
   Student.findById(studentId)
   .then(student => {
     if (!student) {

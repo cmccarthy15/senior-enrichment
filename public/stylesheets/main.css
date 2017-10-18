@@ -1,3 +1,8 @@
+body {
+  background-color: rgba(192, 199, 195, 0.719);
+  height: 100vw;
+}
+
 #main {
   width: 100vw;
   left: 0;
@@ -7,9 +12,59 @@
 .navbar{
   display: flex;
   justify-content: space-between;
-  background-color: rgb(57, 57, 206);
+  background-color:#E1B04B;
 }
 
 .nav-links {
   display:flex;
+}
+
+.allcampuscomp {
+  text-align: center;
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.titlerow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.singlestudent{
+  text-align: center;
+}
+
+
+.single-campus > * {
+  flex-basis: 40vw;
+  text-align: center;
+}
+
+.single-campus-page {
+  text-align: center;
+}
+
+.campus {
+  text-align: center;
+}
+
+.campus > img{
+  transition: 1.5s all ease-out;
+}
+
+
+.campus > img:hover{
+  transform: scale(1.15);
+}
+
+form.addcampus {
+  display: flex;
+  flex-direction: column;
 }

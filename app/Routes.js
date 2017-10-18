@@ -7,13 +7,20 @@ import AllCampus from './components/AllCampus';
 import AllStudent from './components/AllStudent';
 import Home from './components/Home';
 import OneCampus from './components/OneCampus';
+import OneStudent from './components/OneStudent';
 import Root from './components/Root';
-import StudentList from './components/StudentList';
+import { getStudentsThunk } from './reducers/student';
+import { getCampusesThunk } from './reducers/campus';
 
 
 /* -----------------    COMPONENT     ------------------ */
 
 class Routes extends Component{
+
+  componentDidMount(){
+    this.props.getStudentsThunk();
+    this.props.getCampusesThunk();
+  }
 
   render() {
     return (
@@ -22,10 +29,11 @@ class Routes extends Component{
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/campus' component={AllCampus} />
-            <Route path='/campus/:id' component={OneCampus} />
             <Route path='/campus/add' component={AddCampus} />
+            <Route path='/campus/:id' component={OneCampus} />
             <Route exact path='/student' component={AllStudent} />
             <Route path='/student/add' component={AddStudent} />
+            <Route path='/student/:id' component={OneStudent} />
             <Route component={Home} />
           </Switch>
         </Root>
@@ -38,6 +46,6 @@ class Routes extends Component{
 /* -----------------    CONTAINER     ------------------ */
 
 const mapProps = null;
-const mapDispatch = null;
+const mapDispatch = { getStudentsThunk, getCampusesThunk };
 
 export default connect(mapProps, mapDispatch)(Routes);
