@@ -6,7 +6,7 @@ import axios from 'axios';
 // ACTION TYPES
 const GET = 'GET_CAMPUSES';
 const ADD = 'ADD_CAMPUS';
-const EDIT = 'EDIT_CAMPUS';
+//const EDIT = 'EDIT_CAMPUS';
 // const DELETE = 'DELETE_CAMPUS';
 
 // ACTION CREATORS
@@ -16,23 +16,33 @@ const addCampus = (campus) => ({type: ADD, campus});
 
 // THUNK
 export const getCampusesThunk = () => dispatch => {
-  axios.get('/api/campus')
+  return axios.get('/api/campus')
   .then(campuses => {
     dispatch(getCampuses(campuses.data));
   });
 };
 
 export const addCampusThunk = (campus) => dispatch => {
-  axios.post('/api/campus/add', campus)
+  console.log('in add campus thunk');
+  return axios.post('/api/campus/add', campus)
   .then(campus => {
     dispatch(addCampus(campus.data));
   });
 };
 
 export const deleteCampusThunk = (id) => dispatch => {
-  console.log('in delete campus thunk with id: ', id);
-  axios.delete(`/api/campus/${id}`)
+  return axios.delete(`/api/campus/${id}`)
   .then(() => {
+    axios.get('/api/campus')
+    .then(campuses => {
+      dispatch(getCampuses(campuses.data));
+    });
+  });
+};
+
+export const updateCampusThunk = (campus) => dispatch => {
+  return axios.put('/api/campus', campus)
+  .then( () => {
     axios.get('/api/campus')
     .then(campuses => {
       dispatch(getCampuses(campuses.data));

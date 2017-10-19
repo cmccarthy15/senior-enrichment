@@ -23,10 +23,11 @@ export class CampusForm extends Component{
   handleSubmit(event) {
     event.preventDefault();
     //const target = event.target;
-    console.log('handling submit: ', this.state.name, this.state.image, this.state.sunside, this.state.darkside);
-    this.props.addCampusThunk(this.state);
-    this.props.history.push('/campus');
-
+    console.log('handling submit: ', this.state);
+    this.props.addCampusThunk(this.state)
+    .then( () => {
+      this.props.history.push('/campus');
+    });
   }
 
   render() {

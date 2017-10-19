@@ -5,31 +5,43 @@ import axios from 'axios';
 
 // ACTION TYPES
 const GET = 'GET_STUDENTS';
-const ADD = 'ADD_STUDENT'
+const ADD = 'ADD_STUDENT';
+//const EDIT = 'EDIT_STUDENT';
 
 // ACTION CREATORS
 const getStudents = (students) => ({ type: GET, students });
 const addStudent = (student) => ({type: ADD, student});
+//const editStudent = (student) => ({type: EDIT, student});
 
 
 // THUNK
 export const getStudentsThunk = () => dispatch => {
-  axios.get('/api/student')
+  return axios.get('/api/student')
   .then(students => {
     dispatch(getStudents(students.data));
   });
 };
 
 export const addStudentThunk = (info) => dispatch => {
-  axios.post('/api/student/add', info)
+  return axios.post('/api/student/add', info)
   .then(student => {
     dispatch(addStudent(student.data));
   });
 };
 
 export const deleteStudentThunk = (id) => dispatch => {
-  axios.delete(`/api/student/${id}`)
+  return axios.delete(`/api/student/${id}`)
   .then( () => {
+    axios.get('/api/student')
+    .then(students => {
+      dispatch(getStudents(students.data));
+    });
+  });
+};
+
+export const updateStudentThunk = (student) => dispatch => {
+  return axios.put('/api/student', student)
+  .then(() => {
     axios.get('/api/student')
     .then(students => {
       dispatch(getStudents(students.data));

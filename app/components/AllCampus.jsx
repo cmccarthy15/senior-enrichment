@@ -7,7 +7,6 @@ import { deleteCampusThunk } from '../reducers/campus';
 class AllCampus extends Component {
   constructor(props){
     super(props);
-
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -27,7 +26,7 @@ class AllCampus extends Component {
         </div>
         <div className="campuses row">
           {campuses.map(campus => (
-            <div className="box" key={campus.id}>
+            <div className="allcampus onecampus" key={campus.id}>
               <NavLink to={`/campus/${campus.id}`} className="campus">
                 <img src={campus.image} />
               </NavLink>

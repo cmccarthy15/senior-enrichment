@@ -11,7 +11,7 @@ const findCampus = (campus) => ({ type: FIND, campus });
 
 // THUNK
 export const findCampusThunk = (id) => dispatch => {
-  axios.get(`/api/campus/${id}`)
+  return axios.get(`/api/campus/${id}`)
   .then(campus => {
     console.log('in campus thunk: ', campus);
     dispatch(findCampus(campus.data));

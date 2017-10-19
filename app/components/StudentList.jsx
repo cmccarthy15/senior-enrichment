@@ -14,6 +14,7 @@ export class StudentList extends Component{
   }
 
   render(){
+    console.log(this.props);
     const students = this.props.students;
     const hideCampus = this.props.hideCampus ? this.props.hideCampus : false;
     return !students ? null : (
@@ -39,7 +40,7 @@ export class StudentList extends Component{
               <Link to={`/campus/${student.campus.id}`}>{student.campus.name}</Link>
               </td> }
             <td><a className="fa fa-envelope" /></td>
-            <td><a className="fa fa-pencil" /></td>
+            <td><Link to={`/student/${student.id}`} className="fa fa-pencil" /></td>
             <td><a className="fa fa-trash" onClick={() => this.handleClick(student.id)} /></td>
           </tr>
           )
@@ -57,7 +58,7 @@ export class StudentList extends Component{
   }
 }
 
-const mapToProps = null;
+const mapToProps = ( _ , ownProps) => ({ownProps});
 const mapToDispatch = {deleteStudentThunk};
 
 export default connect(mapToProps, mapToDispatch)(StudentList);
