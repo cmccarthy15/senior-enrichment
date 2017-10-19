@@ -33,20 +33,22 @@ export class StudentForm extends Component{
     const campuses = this.props.campuses;
     return (
       <form onSubmit={this.handleSubmit} className="addcampus">
-        <h1>Add Campus</h1>
+        <h1>Add Student</h1>
         <label>
           Name:
           <input
               type="text"
               name="name"
+              required
               value={this.state.name}
               onChange={this.handleChange} />
         </label>
         <label>
           Email:
           <input
-              type="text"
+              type="email"
               name="email"
+              required
               value={this.state.email}
               onChange={this.handleChange} />
         </label>

@@ -15,6 +15,13 @@ const Student = db.define('student', {
     } // is that a thing?
   }
 }, {
+  hooks: {
+    beforeValidate: (user) => {
+      if (user.email.indexOf('.') < 0){
+        user.email = user.email.concat('.com');
+      }
+    }
+  },
   defaultScope: {
     include: [{model: db.model('campus')}]
   },

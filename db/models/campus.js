@@ -19,6 +19,13 @@ const Campus = db.define('campus', {
     type: TEXT
   }
 }, {
+  hooks: {
+    beforeValidate: (campus) => {
+      if (campus.image === ''){
+        campus.image = 'https://pbs.twimg.com/profile_images/599535734865797122/HtkgkbNv_400x400.jpg';
+      }
+    }
+  },
   scopes: {
     populated: () => ({
       include: [{

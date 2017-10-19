@@ -18,6 +18,7 @@ import { getCampusesThunk } from './reducers/campus';
 class Routes extends Component{
 
   componentDidMount(){
+    console.log(this.props);
     this.props.getStudentsThunk();
     this.props.getCampusesThunk();
   }

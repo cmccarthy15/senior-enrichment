@@ -15,11 +15,9 @@ const Sequelize = require('sequelize');
 const Campus = require('./campus');
 const Student = require('./student');
 
-Student.belongsTo(Campus, {
-	foreignKey: {
-		field: 'campusId',
-		allowNull: false
-	}
-});
+Student.belongsTo(Campus);
 
-Campus.hasMany(Student, {cascade: true});
+Campus.hasMany(Student, {
+	allowNull: false,
+	onDelete: 'cascade',
+	cascade: true});

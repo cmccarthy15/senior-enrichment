@@ -34,9 +34,7 @@ export class OneStudent extends Component{
 
   render(){
     const student = this.props.selectedStudent;
-    console.log('selected student: ', student);
     const campuses = this.props.campuses;
-    console.log('state is: ', this.state);
     return (!student) ? (<h1>Loading</h1>) : (
 
       <div className="singlestudent">
@@ -57,17 +55,19 @@ export class OneStudent extends Component{
 
         <select
           name="campusId"
-          value={this.state.campusId}
+          value={this.state.campusId || undefined}
           onChange={this.handleChange} >
 
         {campuses.map(campus => (
           <option key={campus.id} value={campus.id}>{campus.name}</option>
         ))}
       </select>
+        { (!student.campus) ? <h1>Not Assigned To A Campus</h1> :
+          <NavLink to={`/campus/${student.campus.id}`}>
+            <img className="student-image" src={student.campus.image} />
+          </NavLink>
+        }
 
-        <NavLink to={`/campus/${student.campus.id}`}>
-          <img className="student-image" src={student.campus.image} />
-        </NavLink>
 
         <button type="submit" onClick={this.handleSubmit}>Update Student</button>
       </div>

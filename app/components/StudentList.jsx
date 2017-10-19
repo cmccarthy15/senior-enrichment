@@ -14,11 +14,11 @@ export class StudentList extends Component{
   }
 
   render(){
-    console.log(this.props);
+    console.log('current students are: ', this.props.students);
     const students = this.props.students;
     const hideCampus = this.props.hideCampus ? this.props.hideCampus : false;
     return !students ? null : (
-      <table className="table">
+      <table className="table studentlist">
         <thead>
           <tr>
             <th />
@@ -37,7 +37,9 @@ export class StudentList extends Component{
             </td>
             <td>{student.name}</td>
             {hideCampus ? null : <td>
-              <Link to={`/campus/${student.campus.id}`}>{student.campus.name}</Link>
+              { student.campus ?
+                <Link to={`/campus/${student.campus.id}`}>{student.campus.name}</Link>
+                : <Link to={`/campus/`}>Not Assigned</Link> }
               </td> }
             <td><a className="fa fa-envelope" /></td>
             <td><Link to={`/student/${student.id}`} className="fa fa-pencil" /></td>

@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
 import axios from 'axios';
+import { getStudentsThunk } from './student';
 
 //const initialState = {}
 
@@ -36,6 +36,7 @@ export const deleteCampusThunk = (id) => dispatch => {
     axios.get('/api/campus')
     .then(campuses => {
       dispatch(getCampuses(campuses.data));
+      dispatch(getStudentsThunk());
     });
   });
 };
