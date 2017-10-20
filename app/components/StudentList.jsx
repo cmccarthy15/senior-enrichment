@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { deleteStudentThunk } from '../reducers/student';
+import { findCampusThunk } from '../reducers/selectedCampus';
 
 export class StudentList extends Component{
   constructor(props){
@@ -11,10 +13,10 @@ export class StudentList extends Component{
 
   handleClick(id) {
     this.props.deleteStudentThunk(id);
+    if (this.props.hideCampus) { this.props.findCampusThunk(this.props.hideCampus); }
   }
 
   render(){
-    console.log('current students are: ', this.props.students);
     const students = this.props.students;
     const hideCampus = this.props.hideCampus ? this.props.hideCampus : false;
     return !students ? null : (
@@ -36,12 +38,12 @@ export class StudentList extends Component{
               <Link to={`/student/${student.id}`} className="fa fa-info-circle" />
             </td>
             <td>{student.name}</td>
-            {hideCampus ? null : <td>
+            {hideCampus ? false : <td>
               { student.campus ?
                 <Link to={`/campus/${student.campus.id}`}>{student.campus.name}</Link>
                 : <Link to={`/campus/`}>Not Assigned</Link> }
               </td> }
-            <td><a className="fa fa-envelope" /></td>
+            <td><a className="fa fa-envelope" href={`mailto:${student.email}`} /></td>
             <td><Link to={`/student/${student.id}`} className="fa fa-pencil" /></td>
             <td><a className="fa fa-trash" onClick={() => this.handleClick(student.id)} /></td>
           </tr>
@@ -61,6 +63,6 @@ export class StudentList extends Component{
 }
 
 const mapToProps = ( _ , ownProps) => ({ownProps});
-const mapToDispatch = {deleteStudentThunk};
+const mapToDispatch = {deleteStudentThunk, findCampusThunk};
 
-export default connect(mapToProps, mapToDispatch)(StudentList);
+export default withRouter(connect(mapToProps, mapToDispatch)(StudentList));

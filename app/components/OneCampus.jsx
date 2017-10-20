@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import { findCampusThunk } from '../reducers/selectedCampus';
 import { updateCampusThunk } from '../reducers/campus';
 import StudentList from './StudentList';
-import ContentEditable from 'react-contenteditable';
 
 export class OneCampus extends Component{
   constructor(props){
@@ -69,16 +68,12 @@ export class OneCampus extends Component{
 
           <div className="student-info box">
             <h5 className="title is-4">Students</h5>
-            <StudentList students={selectedCampus.students} hideCampus={true} />
+            <StudentList students={selectedCampus.students} hideCampus={selectedCampus.id} />
           </div>
         </div>
       </div>
     );
   }
-
-//  renderRawHTML(text){
-
-
 
 }
 

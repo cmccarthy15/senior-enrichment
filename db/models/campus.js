@@ -9,8 +9,7 @@ const Campus = db.define('campus', {
   },
   image: {
     type: STRING, // look up options
-    allowNull: false,
-    defaultValue: 'https://cdn4.iconfinder.com/data/icons/the-essentials/52/question-mark-circle-symbol-128.png'
+    allowNull: false
   },
   darkside: {
     type: TEXT

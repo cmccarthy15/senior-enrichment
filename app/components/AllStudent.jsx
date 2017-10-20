@@ -11,7 +11,7 @@ class AllStudent extends Component {
     return (
       <div>
         <div className="titlerow">
-          <h2 className="title is-2">All Students</h2>
+          <h2 className="title is-2 allstudents">All Students</h2>
         </div>
         <StudentList students={students} />
       </div>

@@ -6,7 +6,8 @@ router.get('/', (req, res, next) => {
   Student.findAll({include: [{model: Campus}]})
   .then(students => {
     res.status(200).json(students);
-  });
+  })
+  .catch(next);
 });
 
 router.get('/:id', (req, res, next) => {
@@ -16,7 +17,8 @@ router.get('/:id', (req, res, next) => {
     else {
       res.status(200).json(student);
     }
-  });
+  })
+  .catch(next);
 });
 
 router.post('/add', (req, res, next) => {
@@ -29,7 +31,8 @@ router.post('/add', (req, res, next) => {
     } else {
       res.status(201).json(student);
     }
-  });
+  })
+  .catch(next);
 });
 
 router.put('/', (req, res, next) => {
@@ -43,7 +46,8 @@ router.put('/', (req, res, next) => {
   })
   .then(student => {
     res.status(200).json(student);
-  });
+  })
+  .catch(next);
 });
 
 router.delete('/:id', (req, res, next) => {
@@ -56,7 +60,9 @@ router.delete('/:id', (req, res, next) => {
       return student.destroy();
     }
   })
-  .then(() => { res.sendStatus(200); });
+  .then(() => { res.sendStatus(200); })
+  .catch(next);
 });
+
 
 module.exports = router;

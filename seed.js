@@ -38,7 +38,12 @@ const students = [
   {name: 'Emily', email: 'emily@signs.zodiac', campusId: 12}, // pisces
   {name: 'Priya', email: 'priya@signs.zodiac', campusId: 2}, //taurus
   {name: 'Cara', email: 'cara@signs.zodiac', campusId: 5}, //leo
-  {name: 'Satya', email: 'satya@signs.zodiac', campusId: 2} //taurus
+  {name: 'Satya', email: 'satya@signs.zodiac', campusId: 2}, //taurus
+  {name: 'Moyouri', email: 'momo@signs.zodiac', campusId: 2}, //taurus
+  {name: 'Ella', email: 'ella@signs.zodiac', campusId: 5}, //leo
+  {name: 'Cecilia', email: 'cece@signs.zodiac', campusId: 3}, //gemini
+  {name: 'Lina', email: 'eva@signs.zodiac', campusId: 5}, //leo
+  {name: 'Christina', email: 'christina@signs.zodiac', campusId: 10}, //cappy
 ];
 
 console.log('campuses', campuses);
