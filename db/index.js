@@ -5,7 +5,8 @@ const Sequelize = require('sequelize');
 const pkg = require('../package.json');
 
 const name = process.env.DATABASE_URL || pkg.name;
-const connectionString = `postgres://localhost:5432/${name}` || `${name}`;
+const connectionString = `${name}` ||
+`postgres://localhost:5432/${name}`;
 
 console.log(chalk.yellow(`Opening database connection to ${connectionString}`));
 
